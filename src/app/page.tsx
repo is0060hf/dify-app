@@ -128,11 +128,11 @@ export default function ChatPage() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4 , height: '80vh', display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h4" gutterBottom>
-        Dify API チャットボット
+        薬事法適合チェックツール
       </Typography>
-      <Paper variant="outlined" sx={{ p: 2, height: 400, overflowY: "auto", mb: 2 }}>
+      <Paper variant="outlined" sx={{ p: 2, flexGrow: 1, overflowY: "auto", mb: 2 }}>
         {history.map((msg, index) => (
           <Box key={index} sx={{ mb: 1, textAlign: msg.role === "user" ? "right" : "left" }}>
             <Typography

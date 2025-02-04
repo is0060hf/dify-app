@@ -140,7 +140,7 @@ export default function ChatPage() {
       <Typography variant="h4" gutterBottom>
         薬事法適合チェックツール
       </Typography>
-      <Paper variant="outlined" sx={{ p: 2, flexGrow: 1, overflowY: "auto", mb: 2 }}>
+      <Paper variant="outlined" sx={{ p: 2, flexGrow: 1, overflowY: "auto", mb: 2, padding: '15px' }}>
         {history.map((msg, index) => (
           <Box key={index} sx={{ mb: 1, textAlign: msg.role === "user" ? "right" : "left" }}>
             <Typography
@@ -150,9 +150,17 @@ export default function ChatPage() {
                 p: 1,
                 borderRadius: 1,
                 bgcolor: msg.role === "user" ? "primary.light" : "grey.300",
+                maxWidth: '100%',
+                wordWrap: 'break-word',
               }}
             >
-              <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkBreaks]}
+                components={{
+                  ul: ({ node, ...props }) => <ul style={{ paddingLeft: '20px' }} {...props} />,
+                  ol: ({ node, ...props }) => <ol style={{ paddingLeft: '20px' }} {...props} />,
+                }}
+              >
                 {msg.content}
               </ReactMarkdown>
             </Typography>
@@ -167,9 +175,17 @@ export default function ChatPage() {
                 p: 1,
                 borderRadius: 1,
                 bgcolor: "grey.300",
+                maxWidth: '100%',
+                wordWrap: 'break-word',
               }}
             >
-              <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkBreaks]}
+                components={{
+                  ul: ({ node, ...props }) => <ul style={{ paddingLeft: '20px' }} {...props} />,
+                  ol: ({ node, ...props }) => <ol style={{ paddingLeft: '20px' }} {...props} />,
+                }}
+              >
                 {streamingMessage}
               </ReactMarkdown>
             </Typography>

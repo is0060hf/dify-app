@@ -89,7 +89,7 @@ export default function ChatPage() {
   const submitChat = async () => {
     if (!input.trim()) return;
     // ユーザー投稿も ReactMarkdown でレンダリングするためにそのまま記録
-    const newHistory = [...history, { role: "user" as "user", content: input }];
+    const newHistory = [...history, { role: "user" as const, content: input }];
     setHistory(newHistory);
     setStreamingMessage("");
     const currentInput = input;

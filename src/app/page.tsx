@@ -208,7 +208,12 @@ export default function ChatPage() {
           multiline
           minRows={3}
         />
-        <Button variant="contained" type="submit">
+        <Button
+          variant="contained"
+          type="submit"
+          size="large"
+          sx={{ alignSelf: 'flex-end', whiteSpace: 'nowrap' }}
+        >
           送信
         </Button>
       </Box>

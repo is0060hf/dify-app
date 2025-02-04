@@ -157,8 +157,8 @@ export default function ChatPage() {
               <ReactMarkdown
                 remarkPlugins={[remarkBreaks]}
                 components={{
-                  ul: ({ node, ...props }) => <ul style={{ paddingLeft: '20px' }} {...props} />,
-                  ol: ({ node, ...props }) => <ol style={{ paddingLeft: '20px' }} {...props} />,
+                  ul: (props) => <ul style={{ paddingLeft: '20px' }} {...props} />,
+                  ol: (props) => <ol style={{ paddingLeft: '20px' }} {...props} />,
                 }}
               >
                 {msg.content}
@@ -182,8 +182,8 @@ export default function ChatPage() {
               <ReactMarkdown
                 remarkPlugins={[remarkBreaks]}
                 components={{
-                  ul: ({ node, ...props }) => <ul style={{ paddingLeft: '20px' }} {...props} />,
-                  ol: ({ node, ...props }) => <ol style={{ paddingLeft: '20px' }} {...props} />,
+                  ul: (props) => <ul style={{ paddingLeft: '20px' }} {...props} />,
+                  ol: (props) => <ol style={{ paddingLeft: '20px' }} {...props} />,
                 }}
               >
                 {streamingMessage}

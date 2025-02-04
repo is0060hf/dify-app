@@ -142,7 +142,14 @@ export default function ChatPage() {
       </Typography>
       <Paper variant="outlined" sx={{ p: 2, flexGrow: 1, overflowY: "auto", mb: 2, padding: '15px' }}>
         {history.map((msg, index) => (
-          <Box key={index} sx={{ mb: 1, textAlign: msg.role === "user" ? "right" : "left" }}>
+          <Box
+            key={index}
+            sx={{
+              mb: 1,
+              textAlign: msg.role === "user" ? "right" : "left",
+              alignSelf: msg.role === "user" ? "flex-end" : "flex-start"
+            }}
+          >
             <Typography
               variant="body1"
               sx={{

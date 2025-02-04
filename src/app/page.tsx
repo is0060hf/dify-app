@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Paper, Typography, TextField, Button, Box } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
@@ -85,6 +85,15 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<Message[]>([]);
   const [streamingMessage, setStreamingMessage] = useState<string>("");
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [history, streamingMessage]);
 
   const submitChat = async () => {
     if (!input.trim()) return;
@@ -119,7 +128,6 @@ export default function ChatPage() {
     await submitChat();
   };
 
-  // Ctrl+Enter (または Cmd+Enter)で送信するためのキーイベントハンドラ
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -128,7 +136,7 @@ export default function ChatPage() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 , height: '80vh', display: 'flex', flexDirection: 'column' }}>
+    <Container maxWidth="lg" sx={{ mt: 4, height: '80vh', display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h4" gutterBottom>
         薬事法適合チェックツール
       </Typography>
@@ -167,6 +175,7 @@ export default function ChatPage() {
             </Typography>
           </Box>
         )}
+        <div ref={messagesEndRef} />
       </Paper>
       <Box
         component="form"
